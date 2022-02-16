@@ -23,7 +23,10 @@ fn main() {
         // = note: `#[warn(unused_must_use)]` on by default
         // = note: this `Result` may be an `Err` variant, which should be handled
 
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("You guessed: {}", guess);
 
